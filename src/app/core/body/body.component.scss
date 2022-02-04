@@ -5,12 +5,20 @@
   &__title {
     color: #011638;
     margin-top: 0;
+
+    @media screen and (max-width: 599px) {
+      font-size: 24px;
+    }
   }
 
   &__subtitle {
     color: #172d4b;
     opacity: .7;
     margin-bottom: 0;
+
+    @media screen and (max-width: 599px) {
+      font-size: 14px;
+    }
   }
 
   &__control {
@@ -24,5 +32,9 @@
     color: #011638;
     font-weight: 500;
     text-align: end;
+
+    @media screen and (max-width: 599px) {
+      font-size: 24px;
+    }
   }
 }

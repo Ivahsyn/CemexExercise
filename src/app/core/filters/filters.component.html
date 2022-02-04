@@ -1,10 +1,10 @@
-<div fxLayout="row" fxLayoutGap="30px">
+<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="30px" fxLayoutGap.lt-sm="1px">
   <button class="filters" mat-button (click)="openFilters()">
     <mat-icon class="filters-icon">tune</mat-icon>
     Filters
   </button>
 
-  <div fxFlex class="filters-container" *ngIf="showFilters" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+  <div fxFlex fxHide.lt-sm="true" class="filters-container" *ngIf="showFilters" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
     <ng-container *ngFor="let status of filters.selectedStatus">
       <app-filter-item *ngIf="status.active" title="Status" (removeFilterItem)="removeFilterItem('Status', status.value)" [item]="{ type: 'Status', value: status.value }"></app-filter-item>
     </ng-container>  
