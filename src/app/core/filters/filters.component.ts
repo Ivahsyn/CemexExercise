@@ -53,10 +53,8 @@ export class FiltersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: SelectedFilters) => {
-      console.log(`Dialog result: ${JSON.stringify(result)}`);
       if (result) {
         this.filters = result;
-        console.log('this.filters = result', this.filters);
         this.checkIfShowFilters();
       }
 

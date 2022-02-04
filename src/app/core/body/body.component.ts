@@ -20,6 +20,9 @@ export class BodyComponent implements OnInit, OnDestroy {
 
   totalAmountValue: number = 0;
 
+  currentFilters!: SelectedFilters;
+  autocompleteValue!: string;
+
   constructor(
     private db: DatabaseService,
   ) { }
@@ -38,50 +41,58 @@ export class BodyComponent implements OnInit, OnDestroy {
   }
 
   filterDataByName(name: string): void {
-    console.log('toFilterDataByName', name);
-    if (name) {
-      this.inputData = this.inputData.filter(item => item.supplierName === name);
-    } else {
-      this.inputData = [...this.dataSource];
-    }
-    this.countTotal();
+    this.autocompleteValue = name;
+    this.filter();
   }
 
   filterData(filters: SelectedFilters): void {
-    console.log('filterData', filters);
+    this.currentFilters = filters;
+    this.filter();
+  }
+
+  private filter(): void {
     this.inputData = [...this.dataSource];
 
-    let dataForSelectedMonth: Array<RequestedData> = [];
-    if (filters.selectedMonth) {
-      dataForSelectedMonth = [...this.inputData.filter(item => item.month === filters.selectedMonth)];
-    } else {
-      dataForSelectedMonth = [...this.dataSource];
+    if (this.autocompleteValue) {
+      this.inputData = this.inputData.filter(item => {
+        const index: number = item.supplierName.toLowerCase().indexOf(this.autocompleteValue.toLowerCase());
+        return index >= 0;
+      });
     }
-    console.log('dataForSelectedMonth', dataForSelectedMonth);
 
-    let dataForSelectedPhase: Array<RequestedData> = [];
-    if (filters.selectedPhase) {
-      dataForSelectedPhase = [...this.inputData.filter(item => item.phase === filters.selectedPhase)];
-    } else {
-      dataForSelectedPhase = [...this.dataSource];
+    if (this.currentFilters) {
+      let dataForSelectedMonth: Array<RequestedData> = [];
+      if (this.currentFilters.selectedMonth) {
+        dataForSelectedMonth = [...this.inputData.filter(item => item.month === this.currentFilters.selectedMonth)];
+      } else {
+        dataForSelectedMonth = [...this.inputData];
+      }
+
+      let dataForSelectedPhase: Array<RequestedData> = [];
+      if (this.currentFilters.selectedPhase) {
+        dataForSelectedPhase = [...this.inputData.filter(item => item.phase === this.currentFilters.selectedPhase)];
+      } else {
+        dataForSelectedPhase = [...this.inputData];
+      }
+
+      let dataForSelectedStatus: Array<RequestedData> = [];
+      if (this.currentFilters.selectedStatus.every(item => item.active === false)) {
+        dataForSelectedStatus = [...this.inputData];
+      } else {
+        this.currentFilters.selectedStatus.forEach(status => {
+          if (status.active) {
+            let localFilter = [...this.inputData.filter(item => item.status === status.value)];
+            dataForSelectedStatus = dataForSelectedStatus.concat(localFilter);
+            dataForSelectedStatus = dataForSelectedStatus.filter((value, index, self) => {
+              return self.indexOf(value) === index;
+            })
+          }
+        })
+      }
+
+      this.inputData = [...dataForSelectedStatus.filter(item => dataForSelectedMonth.includes(item)).filter(item => dataForSelectedPhase.includes(item))]
     }
-    console.log('dataForSelectedPhase', dataForSelectedPhase);
 
-    let dataForSelectedStatus: Array<RequestedData> = [];
-    if (filters.selectedStatus.every(item => item.active === false)) {
-      dataForSelectedStatus = [...this.dataSource];
-    } else {
-      dataForSelectedStatus = [...this.dataSource];
-      filters.selectedStatus.forEach(status => {
-        if (status.active) {
-          dataForSelectedStatus = [...dataForSelectedStatus.filter(item => item.status === status.value)];
-        }
-      })
-    }
-    console.log('dataForSelectedStatus', dataForSelectedStatus);
-
-    this.inputData = [...dataForSelectedStatus.filter(item => dataForSelectedMonth.includes(item)).filter(item => dataForSelectedPhase.includes(item))]
-    console.log('this.inputData', this.inputData);
     this.countTotal();
   }
 

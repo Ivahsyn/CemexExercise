@@ -31,8 +31,6 @@ export class PopupComponent implements OnInit {
     this.phaseValues = [...this.data.phaseValues];
     this.monthValues = [...this.data.monthValues];
     this.filters = {...this.data.filters};
-
-    console.log('this.filters', this.filters);
   }
 
   onChangeStatusValue(filterItem: string): void {
