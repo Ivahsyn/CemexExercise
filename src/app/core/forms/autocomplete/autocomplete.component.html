@@ -1,0 +1,12 @@
+<form class="form">
+  <input class="form-input" type="text"
+          placeholder="Search for Name"
+         [formControl]="autocompleteControl"
+         [matAutocomplete]="auto" (blur)="onValueChanged()">
+  <mat-icon class="form-icon" matPrefix>search</mat-icon>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onValueChanged()">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</form>

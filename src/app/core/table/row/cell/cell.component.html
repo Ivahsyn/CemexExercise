@@ -1,0 +1,7 @@
+<div *ngIf="!color">
+  <p>{{ value }}</p>
+</div>
+<div *ngIf="color" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+  <div class="color" [ngStyle]="{'background-color':color}"></div>
+  <p>{{ value }}</p>
+</div>

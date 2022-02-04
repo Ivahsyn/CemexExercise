@@ -1,0 +1,24 @@
+.item {
+  background-color: #ffffff;
+  padding: 5px 15px;
+  border-radius: 3px;
+
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__close {
+    width: auto;
+    height: auto;
+    line-height: normal;
+
+    &-icon {
+      line-height: 20px;
+      width: 20px;
+      height: 20px;
+      color: #5bb4f4;
+    }
+  }
+}

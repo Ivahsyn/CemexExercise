@@ -1,0 +1,8 @@
+<mat-form-field class="form-field" appearance="fill">
+  <mat-select class="form-field__select" [(ngModel)]="selected" (selectionChange)="onChangeValue()" [placeholder]="'Select one or more ' + (title | lowercase) + 's' ">
+    <mat-option></mat-option>
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

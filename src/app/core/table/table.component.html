@@ -1,0 +1,10 @@
+<div>
+  <div>
+    <app-table-header [columns]="tableheader"></app-table-header>
+  </div>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <ng-container *ngFor="let row of dataSource">
+      <app-row [item]="row"></app-row>
+    </ng-container>
+  </div>
+</div>

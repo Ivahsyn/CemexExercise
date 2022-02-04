@@ -1,0 +1,22 @@
+<div class="body">
+  <div>
+    <h4 class="body__subtitle">Financial Management • CAPEX Management</h4>
+    <h1 class="body__title">CEMEX Go Online Stores</h1>
+  </div>
+  <div>
+    <div class="body__control" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div>
+        <app-autocomplete [options]="nameAutocomplete" (onvalueChange)="filterDataByName($event)"></app-autocomplete>
+      </div>
+      <div fxFlex>
+        <app-filters (toFilter)="filterData($event)"></app-filters>
+      </div>
+    </div>
+    <div class="body__total">
+      <p>Total {{ totalAmountValue | number: '1.2-2'}} USD</p>
+    </div>
+    <div class="body__table">
+      <app-table [dataSource]="inputData" [tableheader]="displayedColumns"></app-table>
+    </div>
+  </div>
+</div>

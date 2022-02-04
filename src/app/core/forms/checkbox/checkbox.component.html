@@ -1,0 +1,4 @@
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+  <input type="checkbox" [id]="'checkbox-' + item" [name]="item" [checked]="selected" (change)="onChangeValue()">
+  <label [for]="'checkbox-' + item">{{ item }}</label>
+</div>

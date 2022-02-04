@@ -1,0 +1,28 @@
+<div class="popup" fxLayout="column">
+  <button class="popup__close" mat-icon-button mat-dialog-close><mat-icon class="popup__close-icon">close</mat-icon></button>
+  <h1 mat-dialog-title class="popup__title">Filter Expenses</h1>
+  <mat-dialog-content class="popup__content" fxFlex="auto" fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutGap="5px">
+      <h4 class="popup__content-title">Status</h4>
+      <div fxLayout="row" fxLayoutGap="25px"> 
+        <ng-container *ngFor="let item of statusValues; let i = index">
+         <app-checkbox (changeEvent)="onChangeStatusValue($event)" [selected]="filters.selectedStatus[i].active" [item]="item"></app-checkbox>
+        </ng-container>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="30px">
+      <div fxLayout="column" fxLayoutGap="5px">
+        <h4 class="popup__content-title">Phase</h4>
+        <app-select (changeEvent)="onChangeSelectedValue($event, 'phase')" [selected]="filters.selectedPhase" title="Phase" [options]="phaseValues"></app-select>
+      </div>
+      <div fxLayout="column" fxLayoutGap="5px">
+        <h4 class="popup__content-title">Month</h4>
+        <app-select (changeEvent)="onChangeSelectedValue($event, 'month')" [selected]="filters.selectedMonth" title="Month" [options]="monthValues"></app-select>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="popup__actions" fxFlex="auto" align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button class="active"mat-button [mat-dialog-close]="filters" cdkFocusInitial>Apply</button>
+  </mat-dialog-actions>
+</div>

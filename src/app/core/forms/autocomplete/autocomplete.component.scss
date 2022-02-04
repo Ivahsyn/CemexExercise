@@ -1,0 +1,22 @@
+.form {
+  position: relative;
+  margin-left: 20px;
+
+  &-input {
+    height: 40px;
+    width: 180px;
+    padding: 0 10px;
+  }
+
+  &-icon {
+    color: #5bb4f4;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

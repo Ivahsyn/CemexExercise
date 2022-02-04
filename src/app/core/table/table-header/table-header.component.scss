@@ -1,0 +1,21 @@
+.row {
+  padding: 0 15px;
+
+  &__cell {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4f4f4f;
+
+    &:last-child {
+      text-align: end;
+    }
+
+    &:nth-child(1) {
+      flex: 2 1 0% !important;
+    }
+
+    &:nth-child(2) {
+      flex: 2 1 0% !important;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.body {
+  width: 90%;
+  margin: 3% auto;
+
+  &__title {
+    color: #011638;
+    margin-top: 0;
+  }
+
+  &__subtitle {
+    color: #172d4b;
+    opacity: .7;
+    margin-bottom: 0;
+  }
+
+  &__control {
+    background-color: #e8ecef;
+    height: 65px;
+  }
+
+  &__total {
+    height: 65px;
+    font-size: 26px;
+    color: #011638;
+    font-weight: 500;
+    text-align: end;
+  }
+}

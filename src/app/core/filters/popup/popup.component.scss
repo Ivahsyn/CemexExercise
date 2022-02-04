@@ -1,0 +1,48 @@
+.popup {
+  position: relative;
+  height: 100%;
+
+  &__close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  
+    &:hover {
+      cursor: pointer;
+    }
+  
+    &-icon {
+      color: #5bb4f4;
+    }
+  }
+
+  &__title {
+    font-size: 36px;
+    color: #031f3d;
+  }
+
+  &__content {
+
+    &-title {
+      margin: 0;
+      color: #485c72;
+      border-color: #485c72;
+    }
+  }
+
+  &__actions {
+
+    & > button {
+      border: 2px solid #5bb4f4;
+      color: #5bb4f4;
+      width: 85px;
+      height: 30px;
+      line-height: normal;
+
+      &.active {
+        color: #ffffff;
+        background-color: #5bb4f4;
+      }
+    }
+  }
+}
